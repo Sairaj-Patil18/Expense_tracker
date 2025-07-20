@@ -1,0 +1,60 @@
+
+
+
+
+def  add_expense(expenses, amount, category ):
+    expenses.append({'amount': amount, 'category': category})
+
+
+
+#To print expenses
+def print_expenses(expenses):
+    #Accessing the values of key in dictionary
+    for expense in expenses:
+        print(f'Amount : {expense["amount"]}, Category: {expense["category"]}')
+
+
+
+#To calculate total expense
+def total_expenses(expenses):
+   #applying lambda function with map to apply for each element and then apply sum function to all all iterable items
+   return sum(map(lambda expense: expense['amount'] )  )      
+
+
+
+
+def filter_expenses_by_category(expenses, category):
+    return filter(lambda expense : expense['category'] == category, expenses) #applying filter function so that it'll perform operation to all elements of iterable
+
+
+
+def main():
+    expenses = []
+    while True:
+        print('\nExpense Tracker')
+        print('1. Add an expense')
+        print('2. List all expenses')
+        print('3. Show total expenses')
+        print('4. Filter expenses by category')
+        print('5. Exit')
+        
+        choice = input('Enter your choice: ')
+        if choice == '1':
+            amount = float(input("Enter amount: "))
+            category = input("Enter category: ")
+            add_expense(expenses, amount, category)
+        elif choice=='2':
+            print("\nAll Expenses")
+            print_expenses(expenses)  
+        elif choice == '3':
+            print("\nTotal Expense: ", total_expenses(expenses))   
+        elif choice=='4':
+            category = input('\nEnter category to filter: ')
+            print(f'\nExpenses for {category}:')
+            expenses_from_category = filter_expenses_by_category(expenses, category)
+            print_expenses(expenses_from_category)
+        elif choice == '5':
+            print("\nExiting the program.")
+            break
+
+main()              
